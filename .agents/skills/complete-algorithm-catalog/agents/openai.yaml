@@ -1,0 +1,4 @@
+interface:
+  display_name: "完整算法目录交付"
+  short_description: "逐个实现、自验和回归核心算法，直到完整目录全部通过"
+  default_prompt: "Use $complete-algorithm-catalog to implement and verify the full scoped algorithm catalog."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "算法可视化架构"
+  short_description: "定义状态模型、步骤协议、模块边界与可持续扩展原则"
+  default_prompt: "Use $design-algorithm-visualizer to design the architecture for a new visualization module."

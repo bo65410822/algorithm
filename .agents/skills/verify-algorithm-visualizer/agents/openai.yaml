@@ -1,0 +1,4 @@
+interface:
+  display_name: "算法可视化验收"
+  short_description: "验证正确性、步骤回放、交互状态、响应式布局与回归风险"
+  default_prompt: "Use $verify-algorithm-visualizer to verify an algorithm module before delivery."

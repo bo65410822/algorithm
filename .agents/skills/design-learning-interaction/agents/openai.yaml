@@ -1,0 +1,4 @@
+interface:
+  display_name: "教学交互设计"
+  short_description: "统一代码同步、状态动画、播放控制、解释和理解检测体验"
+  default_prompt: "Use $design-learning-interaction to improve the teaching interaction for an algorithm module."

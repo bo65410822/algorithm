@@ -1,0 +1,4 @@
+interface:
+  display_name: "算法模块开发"
+  short_description: "按统一协议实现步骤生成、状态归约、解释文本与页面接入"
+  default_prompt: "Use $develop-algorithm-module to add a new algorithm visualization module."
