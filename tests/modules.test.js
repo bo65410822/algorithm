@@ -23,6 +23,12 @@ test('实验室入口在新标签页打开并隔离 opener',()=>{
   assert.doesNotMatch(appSource,/class="back-link"[^>]+target="_blank"/);
 });
 
+test('共用顶部栏提供可访问的联系邮箱',()=>{
+  const index=readFileSync(new URL('../index.html',import.meta.url),'utf8');
+  assert.match(index,/class="contact-email" href="mailto:15811131141@163\.com"/);
+  assert.match(index,/aria-label="发送邮件至 15811131141@163\.com"/);
+});
+
 test('所有模块包含总览、教学和交互所需元数据',()=>{
   for(const m of modules){
     for(const key of ['id','title','category','categoryLabel','renderer','difficulty','minutes','description','objective','defaultInput','inputLabel','complexity','file']) assert.ok(m[key],`${m.id}.${key}`);
