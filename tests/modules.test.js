@@ -26,7 +26,8 @@ test('实验室入口在新标签页打开并隔离 opener',()=>{
 test('共用顶部栏提供可访问的联系邮箱',()=>{
   const index=readFileSync(new URL('../index.html',import.meta.url),'utf8');
   assert.match(index,/class="contact-email" href="mailto:15811131141@163\.com"/);
-  assert.match(index,/aria-label="发送邮件至 15811131141@163\.com"/);
+  assert.match(index,/联系方式：15811131141@163\.com/);
+  assert.match(index,/aria-label="联系方式：发送邮件至 15811131141@163\.com"/);
 });
 
 test('所有模块包含总览、教学和交互所需元数据',()=>{
