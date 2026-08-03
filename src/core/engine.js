@@ -1,5 +1,7 @@
+export const DEFAULT_DELAY = 1200;
+
 export class PlaybackEngine {
-  constructor(onChange) { this.onChange = onChange; this.steps = []; this.cursor = 0; this.timer = null; this.delay = 800; }
+  constructor(onChange) { this.onChange = onChange; this.steps = []; this.cursor = 0; this.timer = null; this.delay = DEFAULT_DELAY; }
   load(steps) { this.stop(); this.steps = steps; this.cursor = 0; this.notify(); }
   get current() { return this.steps[this.cursor]; }
   get progress() { return this.steps.length > 1 ? this.cursor / (this.steps.length - 1) : 0; }

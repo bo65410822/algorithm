@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { PlaybackEngine } from '../src/core/engine.js';
+import { readFileSync } from 'node:fs';
+import { DEFAULT_DELAY, PlaybackEngine } from '../src/core/engine.js';
 import { modules, moduleMap } from '../src/modules/registry.js';
 
 test('核心目录注册 14 个唯一模块', () => {
@@ -12,6 +13,14 @@ test('核心目录注册 14 个唯一模块', () => {
     'linear-search','binary-search','stack','queue','singly-linked-list',
     'binary-search-tree','heap','graph-bfs','graph-dfs'
   ]);
+});
+
+test('实验室入口在新标签页打开并隔离 opener',()=>{
+  const index=readFileSync(new URL('../index.html',import.meta.url),'utf8');
+  const appSource=readFileSync(new URL('../src/app.js',import.meta.url),'utf8');
+  assert.match(index,/href="#\/lab\/bubble-sort" target="_blank" rel="noopener"/);
+  assert.match(appSource,/href="#\/lab\/\$\{m\.id\}" target="_blank" rel="noopener"/);
+  assert.doesNotMatch(appSource,/class="back-link"[^>]+target="_blank"/);
 });
 
 test('所有模块包含总览、教学和交互所需元数据',()=>{
@@ -112,6 +121,7 @@ test('BFS 和 DFS 从任意起点覆盖全部节点且不重复',()=>{
 test('播放器前进、回退、重置保持确定状态', () => {
   const steps=moduleMap.get('bubble-sort').run([3,2,1]);
   const engine=new PlaybackEngine();engine.load(steps);
+  assert.equal(engine.delay,DEFAULT_DELAY);
   const first=structuredClone(engine.current);engine.move(1);assert.equal(engine.cursor,1);
   engine.move(-1);assert.deepEqual(engine.current,first);
   engine.move(2);engine.reset();assert.deepEqual(engine.current,first);
